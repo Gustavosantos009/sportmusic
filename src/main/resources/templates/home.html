@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -41,9 +41,9 @@
                     </thead>
                     <tr th:each="playlist : ${playlists}">
                         <td>
-                            <a th:text="${playlist.nome}" href="musica/listMusic.html">nome</a>
+                            <a th:text="${playlist.nome}" href="#">nome</a>
                         </td>
-                        <td th:text="${playlist.descricao}">adescricao</td>
+                        <td th:text="${playlist.descricao}">descricao</td>
 
                         <td>
                             <a class="btn btn-sm btn-info">Editar</a>
@@ -51,7 +51,7 @@
                         </td>
                     </tr>
                 </table>
-                <a id="btn"  class="btn" href="Playlist/addPlaylist.html">+ nova playlist</a>
+                <a id="btn"  class="btn" th:href="@{/playlists/cadastro}">+ nova playlist</a>
             </div>
 
            

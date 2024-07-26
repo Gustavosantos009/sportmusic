@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -18,31 +18,33 @@
             </p>
         </div>
 
-        <form >
+        <form th:action="@{/playlists/salvar}" th:object="${playlist}" method="post">
             <div class="row">
-                <input id="id" type="hidden" />
+                <input id="id" type="hidden" th:field="*{id}" />
                 <div class="form-group col-md-4">
                     <label for="nome">Nome:</label>
-                    <input required maxlength="20"class="form-control" id="nome" type="text" />
-                    
+                    <input required minlength="2" maxlength="60"class="form-control" id="nome" type="text" th:field="*{nome}" />
+                    <div th:if="${#fields.hasErrors('nome')}"
+                         th:errors="*{nome}"></div>
                 </div>
 
                 <div class="form-group col-md-8">
                     <label for="descricao">Descrição:</label>
-                    <input  required maxlength="50" class="form-control" id="descricao" type="text"/>
-                
+                    <input  required minlength="2" maxlength="50" class="form-control" id="descricao" type="text" th:field="*{descricao}"/>
+                    <div th:if="${#fields.hasErrors('descricao')}"
+                         th:errors="*{descricao}"></div>
                 </div>
 
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Salvar</button>
+                <button class="btn btn-primary" type="submit" style="margin-top: 15px;">Salvar</button>
             </div>
 
         </form>
 
         <hr />
 
-        <a class="btn btn-light" href="../home.html" style="margin-left: 20px;">Voltar</a>
+        <a class="btn btn-light" th:href="@{/playlists}" style="margin-left: 20px;">Voltar</a>
 
         <hr />
     </div>
