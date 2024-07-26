@@ -18,9 +18,9 @@
             </p>
         </div>
 
-        <form th:action="@{/playlists/salvar}" th:object="${playlist}" method="post">
+        <form th:action=" ${playlist.id} == 0 ? @{/playlists/salvar} : @{/playlists/atualizar}" th:object="${playlist}" method="post">
             <div class="row">
-                <input id="id" type="hidden" th:field="*{id}" />
+                <input id="id" type="hidden" th:field="*{id}"/>
                 <div class="form-group col-md-4">
                     <label for="nome">Nome:</label>
                     <input required minlength="2" maxlength="60"class="form-control" id="nome" type="text" th:field="*{nome}" />

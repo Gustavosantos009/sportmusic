@@ -55,7 +55,7 @@ public class PlaylistsController {
         service.excluir(id);
 
         attr.addFlashAttribute("mensagem", "Playlist excluida com sucesso.");
-        return "redirect:/playlists/listar";
+        return "redirect:/playlists";
 
     }
 
@@ -66,17 +66,16 @@ public class PlaylistsController {
 
         model.addAttribute("playlist",playlist);
 
-        return new ModelAndView("/add",model);
+        return new ModelAndView("PLaylist/addPlaylist",model);
 
     }
-    @PutMapping("/salvar")
+    @PostMapping("/atualizar")
     public String atualiza ( @ModelAttribute("playlist") Playlist playlist,BindingResult result, RedirectAttributes attr){
         if(result.hasErrors()){
-            return "add";
+            return "Playlist/addPlaylist";
         }
-        service.salvarPlaylist(playlist);
-
+        service.atualiza(playlist);
         attr.addFlashAttribute("mensagem", "Playlist atualizada com sucesso.");
-        return "redirect:/playlists/listar";
+        return "redirect:/playlists";
     }
 }

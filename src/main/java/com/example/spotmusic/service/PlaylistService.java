@@ -1,5 +1,6 @@
 package com.example.spotmusic.service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +35,7 @@ public class PlaylistService {
 
     }
 
-    public void atualiza(long id){
-
-        Playlist playlist = repository.getById(id);
-
+    public void atualiza(Playlist playlist){
+        repository.save(playlist);
     }
 }
