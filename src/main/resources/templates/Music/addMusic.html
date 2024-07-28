@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Spotmusic</title>
@@ -22,24 +22,27 @@
             Nova música
         </h4>
 
-        <form >
+        <form th:action="@{/playlist/{playlistId}/music/salvar(playlistId=${playlistId})}" th:object="${music}" method="post">
             <div class="row" style="margin-bottom: 10px;">
-                <input id="id" type="hidden"  />
+                <input id="id" type="hidden" th:field="*{id}"  />
                 <div class="form-group col-md-4">
                     <label for="titulo">Título:</label>
-                    <input required class="form-control" id="titulo" type="text" maxlength="20"/>
+                    <input placeholder="Nome da musica" required class="form-control" id="titulo" type="text" maxlength="20" th:field="*{titulo}"/>
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="banda">Banda:</label>
-                    <input required class="form-control" id="banda" type="text" maxlength="20"/>
+                    <input placeholder="Banda/cantor da musica" required class="form-control" id="banda" type="text" maxlength="20" th:field="*{banda}"/>
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="nota">Nota:</label>
-                    <input required class="form-control" id="nota" type="number" min="1" max="10"/>
+                    <input required class="form-control" id="nota" type="number" min="1" max="10" th:field="*{nota}"/>
                 </div>
-
+                <div class="form-group col-md-4">
+                    <label for="link">Link:</label>
+                    <input required placeholder=" Link da musica" class="form-control" id="link" type="text" th:field="*{LinkMusic}"/>
+                </div>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Salvar</button>
@@ -48,7 +51,7 @@
         </form>
         <hr />
 
-        <a class="btn btn-light" href="listMusic.html">Voltar</a>
+        <a class="btn btn-light" th:href="@{/playlist/{playlistId}/music/list(playlistId=${playlistId})}">Voltar</a>
 
 
     </div>

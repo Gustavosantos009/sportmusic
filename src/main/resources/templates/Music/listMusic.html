@@ -17,7 +17,7 @@
     </div>
 
     <div>
-        <a class="btn btn-primary" href="add.html">Nova música</a>
+        <a class="btn btn-primary" th:href="@{/playlist/{playlistId}/music/cadastro(playlistId=${playlistId})}">Nova música</a>
     </div>
 
     <hr/>
@@ -27,8 +27,9 @@
         </h4>
 
         <div>
-            <div class="alert alert-info" role="alert">
-                <span >mensagem</span>
+            <div th:if="${mensagem !=null }" class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" th:text="${mensagem}"></span>
+
             </div>
         </div>
         <table class="table">
@@ -41,9 +42,11 @@
             </tr>
             </thead>
             <tr th:each="musica : ${musicas}">
-                <td >titulo</td>
-                <td >banda</td>
-                <td >nota</td>
+                <td>
+                    <a th:href="  @{ ${musica.LinkMusic}}" target=”_blank” th:text="${musica.titulo}">titulo></a>
+                </td>
+                <td th:text="${musica.banda}" >banda</td>
+                <td th:text="${musica.nota}" >nota</td>
                 <td>
                     <a class="btn btn-sm btn-info">Editar</a>
                     <a class="btn btn-sm btn-danger">Excluir</a>
@@ -60,7 +63,7 @@
     </div>
 
     <hr/>
-    <a class="btn btn-light" href="../home.html">Voltar</a>
+    <a class="btn btn-light" th:href="@{/playlists}">Voltar</a>
 
     
 

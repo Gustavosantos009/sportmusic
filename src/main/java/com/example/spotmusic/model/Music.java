@@ -27,10 +27,20 @@ public class Music {
     @Range(min = 0, max = 10)
     @Column(nullable = false)
     private int nota;
+    @Column
+    private String LinkMusic;
 
     @ManyToOne
     @JoinColumn(name = "id_playlist_fk")
     private Playlist playlist;
+
+    public String getLinkMusic() {
+        return LinkMusic;
+    }
+
+    public void setLinkMusic(String linkMusic) {
+        LinkMusic = linkMusic;
+    }
 
     public long getId() {
         return id;
