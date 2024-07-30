@@ -38,18 +38,21 @@
                 <th>Nome</th>
                 <th>Banda</th>
                 <th>Nota</th>
+                <th>Link</th>
                 <th>Ação</th>
             </tr>
             </thead>
             <tr th:each="musica : ${musicas}">
-                <td>
-                    <a th:href="  @{ ${musica.LinkMusic}}" target=”_blank” th:text="${musica.titulo}">titulo></a>
-                </td>
+                <td  th:text="${musica.titulo}">titulo</td>
                 <td th:text="${musica.banda}" >banda</td>
                 <td th:text="${musica.nota}" >nota</td>
                 <td>
-                    <a class="btn btn-sm btn-info">Editar</a>
-                    <a class="btn btn-sm btn-danger">Excluir</a>
+                    <a th:href="  @{ ${musica.LinkMusic}}" target=”_blank” th:text="${musica.LinkMusic}"></a>
+
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-info" th:href="@{/playlist/{playlistId}/music/editar/{id}(playlistId=${playlistId},id= ${musica.id})}">Editar</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/playlist/{playlistId}/music/excluir/{id}(playlistId=${playlistId},id= ${musica.id})}">Excluir</a>
                 </td>
             </tr>
         </table>

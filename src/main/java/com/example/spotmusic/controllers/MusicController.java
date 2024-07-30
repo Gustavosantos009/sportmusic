@@ -21,7 +21,7 @@ public class MusicController {
     public ModelAndView listar(@PathVariable("playlistId") long playlistId,ModelMap model){
 
         model.addAttribute("musicas",service.listarPorPlaylist(playlistId));
-        model.addAttribute("playlistid",playlistId);
+        model.addAttribute("playlistId",playlistId);
         return new ModelAndView("Music/listMusic",model);
     }
     @GetMapping("cadastro")
@@ -41,4 +41,38 @@ public class MusicController {
         return "redirect:list";
 
     }
+    @GetMapping("/excluir/{id}")
+    public String delete (@PathVariable("playlistId") long playlistId,@PathVariable("id") long id,RedirectAttributes attr){
+
+        service.excluirMusic(id);
+
+        attr.addFlashAttribute("mensagem", "Musica excluida com sucesso.");
+        return "redirect:../list";
+
+    }
+    @GetMapping("/editar/{id}")
+    public ModelAndView preatualizar(@PathVariable("playlistId") long playlistId,@PathVariable("id")long idMusic,ModelMap model){
+
+       Music music = service.listPorId(idMusic);
+
+       model.addAttribute("music",music);
+        model.addAttribute("playlistId",playlistId);
+
+       return new ModelAndView("Music/addMusic",model);
+
+
+    }
+    @PostMapping("/atualizar")
+    public String atualizar(@PathVariable("playlistId") long playlistId,@ModelAttribute("music") Music music, BindingResult result, RedirectAttributes attr){
+
+        if (result.hasErrors()) {
+            return "Music/addMusic";
+        }
+
+        service.atualizar(playlistId,music);
+        attr.addFlashAttribute("mensagem", "Musica atualizada com sucesso.");
+        return "redirect:list";
+
+    }
+
 }

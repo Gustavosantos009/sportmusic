@@ -14,9 +14,9 @@
     <div class=" container" >
         <div class="jumbotron">
             <h1>SportMusic</h1>
-            <p class="lead">
-                Criar sua Playlist
-            </p>
+            <div class="mb-2">
+                <a class="btn btn-primary mt-1"th:href="@{/playlists/cadastro}">Nova playlist</a>
+            </div>
         </div>
 
         <div class="row" style="display: flex; justify-content: center;">
@@ -34,18 +34,18 @@
 
                 </div>
 
-                <table class="table">
+                <table class="table ">
                     <thead>
                         <tr>
                             <th>Nome</th>
                             <th>Descrição</th>
-                            <th>Açao</th>
+                            <th>Ação</th>
 
                         </tr>
                     </thead>
                     <tr th:each="playlist : ${playlists}">
                         <td>
-                            <a th:text="${playlist.nome}"  th:href="@{playlist/{playlistId}/music/list(playlistId = ${playlist.id})}">nome</a>
+                            <a th:text="${playlist.nome}"  th:href="@{playlist/{playlistId}/music/list(playlistId = ${playlist.id})}">Nome</a>
                         </td>
                         <td th:text="${playlist.descricao}">descricao</td>
 
@@ -55,7 +55,7 @@
                         </td>
                     </tr>
                 </table>
-                <a id="btn"  class="btn" th:href="@{/playlists/cadastro}">+ nova playlist</a>
+
             </div>
             <div th:if="${#lists.isEmpty(playlists)}">
                 <div class="alert alert-info" role="alert">

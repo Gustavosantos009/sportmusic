@@ -22,26 +22,26 @@
             Nova música
         </h4>
 
-        <form th:action="@{/playlist/{playlistId}/music/salvar(playlistId=${playlistId})}" th:object="${music}" method="post">
+        <form th:action="${music.id}== 0 ? @{/playlist/{playlistId}/music/salvar(playlistId=${playlistId})} : @{/playlist/{playlistId}/music/atualizar(playlistId=${playlistId})}" th:object="${music}" method="post">
             <div class="row" style="margin-bottom: 10px;">
                 <input id="id" type="hidden" th:field="*{id}"  />
                 <div class="form-group col-md-4">
                     <label for="titulo">Título:</label>
-                    <input placeholder="Nome da musica" required class="form-control" id="titulo" type="text" maxlength="20" th:field="*{titulo}"/>
+                    <input minlength="2" placeholder="Nome da musica" required class="form-control" id="titulo" type="text" maxlength="50" th:field="*{titulo}"/>
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label for="banda">Banda:</label>
-                    <input placeholder="Banda/cantor da musica" required class="form-control" id="banda" type="text" maxlength="20" th:field="*{banda}"/>
+                    <label for="banda">Banda/cantor:</label>
+                    <input placeholder="Banda/cantor da musica" required class="form-control" id="banda" type="text" minlength="2" maxlength="20" th:field="*{banda}"/>
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="nota">Nota:</label>
-                    <input required class="form-control" id="nota" type="number" min="1" max="10" th:field="*{nota}"/>
+                    <input  value="1" required class="form-control" id="nota" type="number" min="1" max="10" th:field="*{nota}"/>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="link">Link:</label>
-                    <input required placeholder=" Link da musica" class="form-control" id="link" type="text" th:field="*{LinkMusic}"/>
+                    <input placeholder=" Link da musica" class="form-control" id="link" type="text" th:field="*{LinkMusic}"/>
                 </div>
             </div>
             <div class="form-group">

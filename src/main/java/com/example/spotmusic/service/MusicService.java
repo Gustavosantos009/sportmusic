@@ -28,6 +28,19 @@ public class MusicService {
 
         repository.save(music);
     }
+    public void atualizar( long idPlaylist,Music music ){
+        music.setPlaylist(playlistRepository.getById(idPlaylist));
+        repository.save(music);
+    }
 
+    public void excluirMusic ( long idMusic){
+
+        repository.delete(listPorId(idMusic));
+    }
+
+    public Music listPorId(long idMusic){
+
+        return repository.getById(idMusic);
+    }
 
 }
