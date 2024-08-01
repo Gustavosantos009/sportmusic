@@ -11,6 +11,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>spotmusic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>jar</packaging>
 	<name>spotmusic</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>

@@ -11,47 +11,55 @@
 </head>
 
 <body>
-    <div class=" container" >
+    <div class=" container">
         <div class="jumbotron">
             <h1>SportMusic</h1>
-            <div class="mb-2">
-                <a class="btn btn-primary mt-1"th:href="@{/playlists/cadastro}">Nova playlist</a>
-            </div>
+            <p class="lead">
+                Criar sua Playlist
+            </p>
         </div>
 
         <div class="row" style="display: flex; justify-content: center;">
-            <div th:if="${mensagem !=null }" class="alert alert-info" role="alert">
-                <span class="glyphicon glyphicon-exclamation-sign" th:text="${mensagem}"></span>
-
+            <div>
+                <a class="btn btn-primary mb-3" th:href="@{/playlists/cadastro}">Nova playlist</a>
             </div>
+            <hr>
+            <div class="col-md-10">
 
-            <div th:if="${playlists != null}" class="col-md-10">
-
-                <div >
+                <div>
                     <h4>
                         Playlists
                     </h4>
 
                 </div>
 
-                <table class="table ">
+                <div>
+                    <div th:if="${mensagem !=null }" class="alert alert-info" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" th:text="${mensagem}"></span>
+
+                    </div>
+                </div>
+
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Nome</th>
                             <th>Descrição</th>
-                            <th>Ação</th>
-
+                            <th>Açao</th>
                         </tr>
                     </thead>
                     <tr th:each="playlist : ${playlists}">
                         <td>
-                            <a th:text="${playlist.nome}"  th:href="@{playlist/{playlistId}/music/list(playlistId = ${playlist.id})}">Nome</a>
+                            <a th:text="${playlist.nome}"
+                                th:href="@{playlist/{playlistId}/music/list(playlistId = ${playlist.id})}">nome</a>
                         </td>
                         <td th:text="${playlist.descricao}">descricao</td>
 
                         <td>
-                            <a class="btn btn-sm btn-info" th:href="@{/playlists/aditar/{id}(id = ${playlist.id})}">Editar</a>
-                            <a class="btn btn-sm btn-danger" th:href="@{/playlists/excluir/{id}(id = ${playlist.id})}">Excluir</a>
+                            <a class="btn btn-sm btn-info"
+                                th:href="@{/playlists/aditar/{id}(id = ${playlist.id})}">Editar</a>
+                            <a class="btn btn-sm btn-danger"
+                                th:href="@{/playlists/excluir/{id}(id = ${playlist.id})}">Excluir</a>
                         </td>
                     </tr>
                 </table>
@@ -60,10 +68,10 @@
             <div th:if="${#lists.isEmpty(playlists)}">
                 <div class="alert alert-info" role="alert">
                     <span class="glyphicon glyphicon-exclamation-sign"></span>
-                    0 playlists cadastradas!
+                    0 Playlists cadastradas!
                 </div>
             </div>
-           
+
         </div>
     </div>
 
